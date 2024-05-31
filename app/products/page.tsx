@@ -36,11 +36,31 @@ const Products = () => {
   };
 
   if (!isAuthenticated) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
   }
 
   if (loading) {
-    return <div>Loading products...</div>;
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 mt-16">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <div
+            key={index}
+            className="border border-gray-300 rounded-md p-4 shadow-lg animate-pulse"
+          >
+            <div className="w-full h-64 bg-gray-200 rounded mb-4 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-skeleton"></div>
+            </div>
+            <div className="h-6 bg-gray-200 rounded mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded"></div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   const formatRupiah = (number: number) => {
@@ -80,7 +100,7 @@ const Products = () => {
           Logout
         </button>
       </nav>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 mt-16">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 mt">
         {products.map((product: any) => (
           <div
             key={product.cloudProductId}

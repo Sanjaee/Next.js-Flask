@@ -11,6 +11,7 @@ const Login = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +23,7 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(
         "https://flask-deploy-two.vercel.app/login",
@@ -33,6 +35,7 @@ const Login = () => {
     } catch (error: any) {
       setMessage(error.response.data.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -57,8 +60,12 @@ const Login = () => {
           required
           className="border-2 border-gray-400 p-2 rounded-md"
         />
-        <button className="bg-blue-500 text-white p-2 rounded-md" type="submit">
-          Login
+        <button
+          disabled={loading}
+          className="bg-blue-500 text-white p-2 rounded-md"
+          type="submit"
+        >
+          {loading ? "Loading..." : "Login"}
         </button>
       </form>
       {message && <p className="mt-4 text-red-600">{message}</p>}
