@@ -54,14 +54,33 @@ const Products = () => {
 
   return (
     <div>
-      <h1>Products Page</h1>
-      <button
-        onClick={Logout}
-        className="bg-black py-2 px-4 rounded-md text-white"
-      >
-        Logout
-      </button>
-      <div className="grid grid-cols-3 gap-4 px-4">
+      <nav className="flex justify-between bg-white z-50 items-center fixed top-0 w-full h-[52px] px-6">
+        <svg
+          aria-hidden="true"
+          className="swoosh-svg"
+          focusable="false"
+          viewBox="0 0 24 24"
+          role="img"
+          width="64px"
+          height="64px"
+          fill="none"
+        >
+          <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+
+        <button
+          onClick={Logout}
+          className="bg-black py-2 px-4 rounded-md text-white"
+        >
+          Logout
+        </button>
+      </nav>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 mt-16">
         {products.map((product: any) => (
           <div
             key={product.cloudProductId}
